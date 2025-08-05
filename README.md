@@ -1,0 +1,55 @@
+Strong Enttites 
+  Employee(
+  SSN (Primary Key),
+  Fname,
+  Lname,
+  BirthDate,
+  Gender,
+  DNumber[FK] Department(DNumber)
+  )
+
+
+  Department(
+  DNumber [PK],
+  DName,
+  MgrSSN [FK] → Employee(SSN),
+  MgrStartDate
+)
+DeptLocations(
+  DNumber [FK] → Department(DNumber),
+  Location,
+  PRIMARY KEY(DNumber, Location)
+)
+
+Project(
+  PNumber [PK],
+  PName,
+  Location,
+  City,
+  DNumber [FK] → Department(DNumber)
+)
+
+Dependent(
+  SSN [FK] → Employee(SSN),
+  DependentName,
+  Gender,
+  BirthDate,
+  PRIMARY KEY(SSN, DependentName)
+)
+
+WorksOn(
+  SSN [FK] → Employee(SSN),
+  PNumber [FK] → Project(PNumber),
+  Hours,
+  PRIMARY KEY(SSN, PNumber)
+)
+
+Employee(
+  SSN [PK],
+  SupervisorSSN [FK] → Employee(SSN),  -- Nullable if not supervised
+  ...
+)
+
+
+
+
